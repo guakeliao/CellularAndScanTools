@@ -23,6 +23,7 @@
 		663955801A45C732002A6A23 /* CellularNetworksSwitchWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 663955721A45C732002A6A23 /* CellularNetworksSwitchWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		663955861A45D11E002A6A23 /* network.png in Resources */ = {isa = PBXBuildFile; fileRef = 663955851A45D11E002A6A23 /* network.png */; };
 		663955881A45D477002A6A23 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663955871A45D477002A6A23 /* CoreTelephony.framework */; };
+		667287881AE0A556008A1CED /* ScanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 667287871AE0A556008A1CED /* ScanViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		6639557C1A45C732002A6A23 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		663955851A45D11E002A6A23 /* network.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = network.png; sourceTree = "<group>"; };
 		663955871A45D477002A6A23 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		667287871AE0A556008A1CED /* ScanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScanViewController.xib; sourceTree = "<group>"; };
 		9794E7D3545B143B93ADAA35 /* Pods-CellularNetworksSwitch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CellularNetworksSwitch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CellularNetworksSwitch/Pods-CellularNetworksSwitch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,6 +124,7 @@
 				660A33501ADFAEB1005F892F /* RootViewController.m */,
 				660A334B1ADFAE99005F892F /* ScanViewController.h */,
 				660A334C1ADFAE99005F892F /* ScanViewController.m */,
+				667287871AE0A556008A1CED /* ScanViewController.xib */,
 				660A33491ADFAE99005F892F /* GenerateViewController.h */,
 				660A334A1ADFAE99005F892F /* GenerateViewController.mm */,
 				660A33521ADFB36F005F892F /* GenerateViewController.xib */,
@@ -339,6 +342,7 @@
 				660A33531ADFB36F005F892F /* GenerateViewController.xib in Resources */,
 				663955591A45C71A002A6A23 /* LaunchScreen.xib in Resources */,
 				663955561A45C71A002A6A23 /* Images.xcassets in Resources */,
+				667287881AE0A556008A1CED /* ScanViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

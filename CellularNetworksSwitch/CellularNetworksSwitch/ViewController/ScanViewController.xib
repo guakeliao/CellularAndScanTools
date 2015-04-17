@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7531"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScanViewController">
+            <connections>
+                <outlet property="scanRectView" destination="Avg-EQ-IGb" id="44c-vn-kCO"/>
+                <outlet property="view" destination="iN0-l3-epB" id="mu3-Xt-ap7"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gSb-bB-s4i">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Avg-EQ-IGb">
+                            <rect key="frame" x="40" y="120" width="240" height="240"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="Avg-EQ-IGb" secondAttribute="height" id="W7Q-Ct-CGa"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="Avg-EQ-IGb" firstAttribute="width" secondItem="gSb-bB-s4i" secondAttribute="width" multiplier="6:8" id="Uk1-Hb-EmL"/>
+                        <constraint firstAttribute="centerX" secondItem="Avg-EQ-IGb" secondAttribute="centerX" id="WKq-ec-UfR"/>
+                        <constraint firstAttribute="centerY" secondItem="Avg-EQ-IGb" secondAttribute="centerY" id="jkB-Xt-fZw"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="gSb-bB-s4i" secondAttribute="bottom" id="O2N-oA-sxP"/>
+                <constraint firstAttribute="trailing" secondItem="gSb-bB-s4i" secondAttribute="trailing" id="XGU-jr-JOr"/>
+                <constraint firstItem="gSb-bB-s4i" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="aqW-q9-Htf"/>
+                <constraint firstItem="gSb-bB-s4i" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="iJD-4W-XM0"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="196" y="296"/>
+        </view>
+    </objects>
+</document>

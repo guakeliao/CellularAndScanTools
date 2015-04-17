@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <ZXingObjC/ZXingObjC.h>
 
 @interface RootViewController : UIViewController
 

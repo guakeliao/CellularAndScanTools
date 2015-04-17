@@ -32,8 +32,8 @@
   [super viewDidLoad];
   [self addRightBarButtonWithTitle:@"生成" andAction:@selector(updatePressed:)];
 }
-#pragma mark - Events
 
+#pragma mark - Events
 - (void)updatePressed:(id)sender {
   [self.textView resignFirstResponder];
 
