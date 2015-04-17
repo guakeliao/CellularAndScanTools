@@ -1,0 +1,15 @@
+PODS:
+  - QR-Code-Encoder-for-Objective-C (1.0.0)
+  - ZXingObjC (3.0.3):
+    - ZXingObjC/All (= 3.0.3)
+  - ZXingObjC/All (3.0.3)
+
+DEPENDENCIES:
+  - QR-Code-Encoder-for-Objective-C (~> 1.0.0)
+  - ZXingObjC (~> 3.0.3)
+
+SPEC CHECKSUMS:
+  QR-Code-Encoder-for-Objective-C: 7b738fc1dc4b3f5f49e3fd841cbfd3da849b7f23
+  ZXingObjC: 1eebdf4334b7de660ae42ddd23bd97b6d777b07d
+
+COCOAPODS: 0.35.0
