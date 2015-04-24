@@ -36,7 +36,11 @@
   // Override point for customization after application launch.
 
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-  self.window.rootViewController = self.tabBarController;
+    //扫描模块
+    UINavigationController *scanNVC = [[UINavigationController alloc]
+                                       initWithRootViewController:[[ScanViewController alloc] init]];
+//  self.window.rootViewController = self.tabBarController;
+    self.window.rootViewController = scanNVC;
   self.window.backgroundColor = [UIColor whiteColor];
   [self.window makeKeyAndVisible];
   return YES;
