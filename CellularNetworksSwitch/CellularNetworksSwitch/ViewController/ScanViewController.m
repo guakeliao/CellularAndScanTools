@@ -83,6 +83,12 @@
 
     for (ZBarSymbol* symbol in symbols) {
         //        [sTxtField setText:symbol.data];
+        if ([symbol.data hasPrefix:@"http://"]||[symbol.data hasPrefix:@"https://"]) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:symbol.data]];
+        }else
+        {
+            NSLog(@"%@",symbol.data);
+        }
         break;
     }
 
