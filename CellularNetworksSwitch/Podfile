@@ -1,7 +1,6 @@
 # Uncomment this line to define a global platform for your project
 platform :ios, '8.0'
 target 'CellularNetworksSwitch' do
-    pod 'ZXingObjC', '~> 3.0.3'
     pod 'QR-Code-Encoder-for-Objective-C', '~> 1.0.0'
 end
 

@@ -2,64 +2,43 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScanViewController">
             <connections>
+                <outlet property="readImageView" destination="hET-rI-onv" id="eS3-Vn-nom"/>
+                <outlet property="readview" destination="axm-IP-3JY" id="8FT-k9-hc5"/>
                 <outlet property="view" destination="iN0-l3-epB" id="mu3-Xt-ap7"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gSb-bB-s4i">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BEr-yM-8ij">
-                            <rect key="frame" x="0.0" y="430" width="320" height="50"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7J2-Li-GAQ">
-                                    <rect key="frame" x="20" y="8" width="130" height="34"/>
-                                    <state key="normal" title="相机">
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="scanClicked:" destination="-1" eventType="touchUpInside" id="3l7-il-5sc"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WVD-ve-fRU">
-                                    <rect key="frame" x="170" y="8" width="130" height="34"/>
-                                    <state key="normal" title="相册">
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="createClicked:" destination="-1" eventType="touchUpInside" id="nfN-JD-xu6"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="centerY" secondItem="WVD-ve-fRU" secondAttribute="centerY" id="05Y-OG-5Dd"/>
-                                <constraint firstAttribute="centerY" secondItem="7J2-Li-GAQ" secondAttribute="centerY" id="1ch-Nv-2Sc"/>
-                                <constraint firstAttribute="trailing" secondItem="WVD-ve-fRU" secondAttribute="trailing" constant="20" id="4Sa-hY-Dty"/>
-                                <constraint firstItem="7J2-Li-GAQ" firstAttribute="top" secondItem="BEr-yM-8ij" secondAttribute="top" constant="8" id="4ae-HZ-Cas"/>
-                                <constraint firstItem="7J2-Li-GAQ" firstAttribute="width" secondItem="WVD-ve-fRU" secondAttribute="width" id="WUi-Yy-7SV"/>
-                                <constraint firstAttribute="bottom" secondItem="7J2-Li-GAQ" secondAttribute="bottom" constant="8" id="b4o-Kn-5j6"/>
-                                <constraint firstItem="WVD-ve-fRU" firstAttribute="leading" secondItem="7J2-Li-GAQ" secondAttribute="trailing" constant="20" id="kBc-J9-T3E"/>
-                                <constraint firstItem="7J2-Li-GAQ" firstAttribute="leading" secondItem="BEr-yM-8ij" secondAttribute="leading" constant="20" id="lKB-8d-JRV"/>
-                                <constraint firstItem="WVD-ve-fRU" firstAttribute="top" secondItem="BEr-yM-8ij" secondAttribute="top" constant="8" id="ukQ-Wz-QHC"/>
-                                <constraint firstAttribute="bottom" secondItem="WVD-ve-fRU" secondAttribute="bottom" constant="8" id="veL-Ey-x8x"/>
-                                <constraint firstAttribute="height" constant="50" id="wCJ-GK-Rsg"/>
-                            </constraints>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="axm-IP-3JY" customClass="ZBarReaderView">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scan" translatesAutoresizingMaskIntoConstraints="NO" id="hET-rI-onv">
+                            <rect key="frame" x="21" y="167" width="333" height="333"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="hET-rI-onv" secondAttribute="height" id="dK1-Ux-Tmo"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
-                        <constraint firstItem="BEr-yM-8ij" firstAttribute="leading" secondItem="gSb-bB-s4i" secondAttribute="leading" id="WzS-vo-Ht2"/>
-                        <constraint firstAttribute="bottom" secondItem="BEr-yM-8ij" secondAttribute="bottom" id="qhq-XV-1JM"/>
-                        <constraint firstAttribute="trailing" secondItem="BEr-yM-8ij" secondAttribute="trailing" id="udS-3s-dFn"/>
+                        <constraint firstItem="axm-IP-3JY" firstAttribute="leading" secondItem="gSb-bB-s4i" secondAttribute="leading" id="APv-G5-vtl"/>
+                        <constraint firstAttribute="centerX" secondItem="hET-rI-onv" secondAttribute="centerX" id="DmS-YR-GEE"/>
+                        <constraint firstItem="axm-IP-3JY" firstAttribute="top" secondItem="gSb-bB-s4i" secondAttribute="top" id="Ngq-Mu-PxG"/>
+                        <constraint firstAttribute="centerY" secondItem="hET-rI-onv" secondAttribute="centerY" id="r2v-is-ckQ"/>
+                        <constraint firstAttribute="bottom" secondItem="axm-IP-3JY" secondAttribute="bottom" id="t5w-7E-bNN"/>
+                        <constraint firstAttribute="trailing" secondItem="axm-IP-3JY" secondAttribute="trailing" id="vWl-MP-HOm"/>
+                        <constraint firstItem="hET-rI-onv" firstAttribute="width" secondItem="gSb-bB-s4i" secondAttribute="height" multiplier="1:2" id="whm-S6-SQ6"/>
                     </constraints>
                 </view>
             </subviews>
@@ -70,8 +49,11 @@
                 <constraint firstItem="gSb-bB-s4i" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="aqW-q9-Htf"/>
                 <constraint firstItem="gSb-bB-s4i" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="iJD-4W-XM0"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="66" y="297"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="-130" y="12"/>
         </view>
     </objects>
+    <resources>
+        <image name="scan" width="333" height="333"/>
+    </resources>
 </document>

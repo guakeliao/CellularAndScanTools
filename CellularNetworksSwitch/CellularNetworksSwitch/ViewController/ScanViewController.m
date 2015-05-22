@@ -10,80 +10,136 @@
 #import "GenerateViewController.h"
 #import "ZBarSDK.h"
 
-@interface ScanViewController () <ZBarReaderDelegate>
+@interface ScanViewController () <ZBarReaderViewDelegate>
+@property (weak, nonatomic) IBOutlet ZBarReaderView* readview;
+@property (weak, nonatomic) IBOutlet UIImageView* readImageView;
 
-@property(nonatomic, weak) IBOutlet UIView *scanRectView;
-@property(nonatomic, weak) IBOutlet UILabel *decodedLabel;
+@property (nonatomic, strong) UIImageView* readLineView;
 
 @end
 
 @implementation ScanViewController
 
-#pragma mark - View Controller Methods
-//扫描
-- (IBAction)scanClicked:(id)sender {
+#pragma mark 获取扫描区域
+- (CGRect)getScanCrop:(CGRect)rect readerViewBounds:(CGRect)readerViewBounds
+{
+    CGFloat x, y, width, height;
 
-  ZBarReaderViewController *readerVC = [ZBarReaderViewController new];
-  readerVC.readerDelegate = self;
-  readerVC.supportedOrientationsMask = ZBarOrientationMaskAll;
-  ZBarImageScanner *scanner = readerVC.scanner;
-  [scanner setSymbology:ZBAR_I25 config:ZBAR_CFG_ENABLE to:0];
+    x = rect.origin.x / readerViewBounds.size.width;
+    y = rect.origin.y / readerViewBounds.size.height;
+    width = rect.size.width / readerViewBounds.size.width;
+    height = rect.size.height / readerViewBounds.size.height;
 
-  UINavigationController *scanNV =
-      [[UINavigationController alloc] initWithRootViewController:readerVC];
-  scanNV.navigationItem.title = @"扫描";
-  [self presentViewController:scanNV animated:YES completion:nil];
-}
-//生成
-- (IBAction)createClicked:(id)sender {
-  UINavigationController *createNV = [[UINavigationController alloc]
-      initWithRootViewController:[[GenerateViewController alloc] init]];
-  [self.navigationController presentViewController:createNV
-                                          animated:YES
-                                        completion:nil];
+    return CGRectMake(x, y, width, height);
 }
 
-- (instancetype)init {
-  self = [super init];
-  if (self) {
-    self.title = @"二维码相关";
-  }
-  return self;
+#pragma mark 扫描动画
+- (void)loopDrawLine
+{
+    CGRect rect = CGRectMake(self.readImageView.frame.origin.x,
+        self.readImageView.frame.origin.y,
+        self.readImageView.frame.size.width, 2);
+    if (self.readLineView) {
+        [self.readLineView removeFromSuperview];
+        self.readLineView = nil;
+    }
+    self.readLineView = [[UIImageView alloc] initWithFrame:rect];
+    [self.readLineView setImage:[UIImage imageNamed:@"line.png"]];
+    self.readLineView.backgroundColor = [UIColor grayColor];
+    [UIView animateWithDuration:3.0
+        delay:0.0
+        options:UIViewAnimationOptionCurveEaseIn
+        animations:^{
+        //修改fream的代码写在这里
+        self.readLineView.frame =
+            CGRectMake(self.readLineView.frame.origin.x,
+                       self.readLineView.frame.origin.y +
+                           self.readLineView.frame.size.height,
+                       self.readLineView.frame.size.width, 2);
+        [self.readLineView setAnimationRepeatCount:1];
+        }
+        completion:^(BOOL finished) {
+//                                     if (!is_Anmotion) {
+//            
+//                                         [self loopDrawLine];
+//                                     }
+
+        }];
+
+    [self.readview addSubview:self.readLineView];
 }
-- (void)viewDidLoad {
-  [super viewDidLoad];
-  [self initForData];
-  [self initForView];
-  //  [self initForAction];
+#pragma mark 获取扫描结果
+- (void)readerView:(ZBarReaderView*)readerView
+    didReadSymbols:(ZBarSymbolSet*)symbols
+         fromImage:(UIImage*)image
+{
+    // 得到扫描的条码内容
+    const zbar_symbol_t* symbol = zbar_symbol_set_first_symbol(symbols.zbarSymbolSet);
+    NSString* symbolStr =
+        [NSString stringWithUTF8String:zbar_symbol_get_data(symbol)];
+    if (zbar_symbol_get_type(symbol) == ZBAR_QRCODE) {
+        // 是否QR二维码
+    }
+
+    for (ZBarSymbol* symbol in symbols) {
+        //        [sTxtField setText:symbol.data];
+        break;
+    }
+
+    [readerView stop];
+}
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.title = @"二维码相关";
+    }
+    return self;
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loopDrawLine];
+    [self.readview start];
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.readview stop];
+}
+//- (void)viewDidLayoutSubviews
+//{
+//    [super viewDidLayoutSubviews];
+//    self.readview.scanCrop =
+//        [self getScanCrop:self.readImageView.frame
+//            readerViewBounds:self.readview.frame]; //将被扫描的图像的区域
+//}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self initForData];
+    [self initForView];
+    //    [self initForAction];
 }
 #pragma mark
 #pragma mark Init For VC
 
-- (void)initForData {
+- (void)initForData
+{
 }
 
-- (void)initForView {
-}
+- (void)initForView
+{
+    //    self.readview.backgroundColor = [UIColor clearColor];
+    self.readview.readerDelegate = self;
+    self.readview.allowsPinchZoom = YES; //使用手势变焦
+    self.readview.trackingColor = [UIColor redColor];
+    self.readview.showsFPS = NO; // 显示帧率  YES 显示  NO 不显示
 
-- (void)imagePickerController:(UIImagePickerController *)reader
-    didFinishPickingMediaWithInfo:(NSDictionary *)info {
-  // ADD: get the decode results
-  id<NSFastEnumeration> results =
-      [info objectForKey:ZBarReaderControllerResults];
-  ZBarSymbol *symbol = nil;
-  for (symbol in results)
-    // EXAMPLE: just grab the first barcode
-    break;
-
-  // EXAMPLE: do something useful with the barcode data
-  self.decodedLabel.text = symbol.data;
-
-  // EXAMPLE: do something useful with the barcode image
-  //    resultImage.image =
-  //    [info objectForKey: UIImagePickerControllerOriginalImage];
-
-  // ADD: dismiss the controller (NB dismiss from the *reader*!)
-  [reader dismissModalViewControllerAnimated:YES];
+    self.readview.scanCrop =
+        [self getScanCrop:self.readImageView.frame
+            readerViewBounds:self.readview.bounds]; //将被扫描的图像的区域
+    [self.readview addSubview:self.readLineView];
 }
 
 @end
